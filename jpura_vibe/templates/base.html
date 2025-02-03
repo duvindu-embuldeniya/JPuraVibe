@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+    <title>J'Pura Vibe</title>
+
+    <link rel="icon" type="favicon" href="{% static 'images/web/logo.png' %}">
+  </head>
+
+  <body>
+    
+
+    {% include 'navbar.html' %}
+
+	<div style="text-align: center;">
+        {% if messages %}
+        {% for message in messages %}
+        <div class="closer" style="margin-top: 10px; display: inline-block;">
+            <div style="background-color: #f0f0f0; display: inline-block; padding: 5px 10px; border-radius: 5px;"> 
+                <span style="color: #000;">{{ message }}</span>
+                <span class="alert__close" style="cursor: pointer; margin-left: 10px; font-size: 16px; color: #000;">X</span>
+            </div>
+        </div>
+        {% endfor %}
+        {% endif %}
+    </div>
+    
+    
+
+    {% block content %}
+    {% endblock %}
+
+    <script src="{% static 'js/script.js' %}"></script>
+  </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,169 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+    <main class="auth layout">
+      <div class="container">
+        <div class="layout__box">
+          <div class="layout__boxHeader">
+            <div class="layout__boxTitle">
+              <h3>Register</h3>
+            </div>
+          </div>
+          <div class="layout__body">
+            <h2 class="auth__tagline">Find your study partner</h2>
+
+            <form class="form" action="" method="POST">
+              {% csrf_token %}
+
+              <!-- Render each form field manually with error messages and custom spacing -->
+              <div class="form__group">
+                <label for="{{ form.username.id_for_label }}">{{ form.username.label }}</label>
+                {{ form.username }}
+                <div class="help-text">
+                  {% if form.username.help_text %}
+                    <small>{{ form.username.help_text }}</small>
+                  {% endif %}
+                </div>
+                <!-- Display errors for username -->
+                {% if form.username.errors %}
+                  <div class="error-message">
+                    {% for error in form.username.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="form__group">
+                <label for="{{ form.password1.id_for_label }}">{{ form.password1.label }}</label>
+                {{ form.password1 }}
+                <div class="help-text">
+                  {% if form.password1.help_text %}
+                    <small>{{ form.password1.help_text }}</small>
+                  {% endif %}
+                </div>
+                <!-- Display errors for password1 -->
+                {% if form.password1.errors %}
+                  <div class="error-message">
+                    {% for error in form.password1.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div class="form__group">
+                <label for="{{ form.password2.id_for_label }}">{{ form.password2.label }}</label>
+                {{ form.password2 }}
+                <div class="help-text">
+                  {% if form.password2.help_text %}
+                    <small>{{ form.password2.help_text }}</small>
+                  {% endif %}
+                </div>
+                <!-- Display errors for password2 -->
+                {% if form.password2.errors %}
+                  <div class="error-message">
+                    {% for error in form.password2.errors %}
+                      <p>{{ error }}</p>
+                    {% endfor %}
+                  </div>
+                {% endif %}
+              </div>
+
+              <div style="text-align: center;">
+                <button class="btn btn--main" type="submit">
+                  <svg
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="32"
+                    height="32"
+                    viewBox="0 0 32 32"
+                  >
+                    <title>lock</title>
+                    <path
+                      d="M27 12h-1v-2c0-5.514-4.486-10-10-10s-10 4.486-10 10v2h-1c-0.553 0-1 0.447-1 1v18c0 0.553 0.447 1 1 1h22c0.553 0 1-0.447 1-1v-18c0-0.553-0.447-1-1-1zM8 10c0-4.411 3.589-8 8-8s8 3.589 8 8v2h-16v-2zM26 30h-20v-16h20v16z"
+                    ></path>
+                    <path
+                      d="M15 21.694v4.306h2v-4.306c0.587-0.348 1-0.961 1-1.694 0-1.105-0.895-2-2-2s-2 0.895-2 2c0 0.732 0.413 1.345 1 1.694z"
+                    ></path>
+                  </svg>
+                  Register
+                </button>
+              </div>
+            </form>
+
+            <div class="auth__action">
+              <p>Already have an account?</p>
+              <a style="text-decoration: none;" href="{% url 'login' %}" class="btn btn--link">Sign In</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <style>
+        /* Adjust input fields size */
+        .form-control {
+            width: 100%; /* Make input fields take full width of the container */
+            padding: 10px 12px; /* Moderate padding */
+            font-size: 14px; /* Slightly larger font size */
+            border-radius: 4px; /* Optional border-radius for rounded corners */
+        }
+
+        /* Label styling */
+        .form__group label {
+            font-size: 16px; /* Increase label size */
+            font-weight: bold; /* Make labels bold */
+            margin-bottom: 8px; /* Space below the label */
+            display: block;
+        }
+
+        /* Instructions under each input field */
+        .help-text small {
+            font-size: 12px; /* Smaller font for instructions */
+            color: #888; /* Slightly grey color */
+            margin-top: 5px; /* Small margin between input and instruction */
+        }
+
+        /* Space between form groups */
+        .form__group {
+            margin-bottom: 20px; /* Reduced space between input groups */
+        }
+
+        /* Button styling */
+        .btn--main {
+            width: auto; /* Button width based on content */
+            padding: 10px 20px; /* Adjust padding */
+            font-size: 16px; /* Button font size */
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 10px; /* Reduced space between button and form */
+        }
+
+        .btn--main svg {
+            margin-right: 8px; /* Space between icon and button text */
+        }
+
+        /* Button alignment */
+        .auth__action {
+            margin-top: 10px; /* Reduced space between "Already have an account" and button */
+            text-align: center;
+        }
+
+        .auth__action .btn--link {
+            font-size: 14px; /* Adjust font size for the sign-in link */
+            text-decoration: underline;
+        }
+
+        /* Error messages styling */
+        .error-message {
+            color: red;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+    </style>
+
+{% endblock %}
+

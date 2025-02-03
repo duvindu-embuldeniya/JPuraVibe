@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+
+    <main class="update-account layout">
+        <div class="container">
+            <div class="layout__box">
+                <div class="layout__boxHeader">
+                    <div class="layout__boxTitle">
+                        <a href="{% url 'home' %}">
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                viewBox="0 0 32 32">
+                                <title>arrow-left</title>
+                                <path
+                                    d="M13.723 2.286l-13.723 13.714 13.719 13.714 1.616-1.611-10.96-10.96h27.625v-2.286h-27.625l10.965-10.965-1.616-1.607z">
+                                </path>
+                            </svg>
+                        </a>
+                        <h3>Edit your profile</h3>
+                    </div>
+                </div>
+                <div class="layout__body">
+                    <form class="form" action="" method="POST" enctype="multipart/form-data">
+                      {% csrf_token %}
+
+                        <!-- Label for profile picture right above the input box -->
+                        <div class="form__group">
+                            <label for="profile_pic">{{field.label}}</label>
+                            <!-- Add space below the label -->
+                            {{u_form|crispy}}
+                            {{p_form|crispy}}
+                        </div>
+
+                        <!-- "Forgot Password?" link reduced spacing -->
+                        <small class="text-muted ml-2" style="margin-top: 5px;">
+                            <a href="{% url 'password_reset' %}">Change Password?</a>
+                        </small>
+
+                        <div class="form__action" style="margin-top: 10px;">
+                            <a class="btn btn--dark" href="{% url 'home' %}">Cancel</a>
+                            <button class="btn btn--main" type="submit">Update</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <style>
+        /* Resize input fields to a moderate size */
+        .form-control {
+            width: 100%; /* Input fields take full width of the container */
+            padding: 10px 12px; /* Moderate padding */
+            font-size: 14px; /* Slightly larger font size */
+            border-radius: 4px; /* Optional border-radius for rounded corners */
+            margin-bottom: 15px; /* Space between input fields */
+        }
+
+        /* Increase label size and add space below */
+        .form__group label {
+            font-size: 16px; /* Increase the size of form labels (e.g., username, password) */
+            font-weight: bold; /* Make labels bold for better visibility */
+            margin-bottom: 8px; /* Add space below the label */
+            display: block; /* Make sure label occupies full width */
+        }
+
+        /* Button styling */
+        .btn--main, .btn--dark {
+            width: auto; /* Keep the button width based on content */
+            padding: 10px 20px; /* Adjust padding to moderate size */
+            font-size: 16px; /* Increase font size */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto; /* Center the button horizontally */
+        }
+
+        /* Button icon adjustment */
+        .btn--main svg, .btn--dark svg {
+            margin-right: 5px; /* Space between icon and button text */
+        }
+
+        /* Button text and icon alignment */
+        .btn--main span, .btn--dark span {
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        /* Adjust spacing for action buttons */
+        .form__action {
+            margin-top: 10px; /* Reduce space between buttons */
+        }
+
+        /* Reduce spacing between "Forgot Password?" and form */
+        .text-muted {
+            margin-top: 5px; /* Reduced top margin */
+        }
+    </style>
+
+{% endblock %}
